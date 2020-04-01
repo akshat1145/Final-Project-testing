@@ -13,50 +13,24 @@ import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.renderer.category.StatisticalLineAndShapeRenderer;
 import org.jfree.data.statistics.DefaultStatisticalCategoryDataset;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.InputStreamReader;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.text.NumberFormat;
-import java.util.StringTokenizer;
 
 public class DisplayGraph extends Application {
-    public int avg() {
-        int avg = 0;
-        try {
-            FileInputStream fstream = new FileInputStream("/Users/akshat./Desktop/UW/CS739/Final-Project-testing/src/main/java/sample/data.csv");
-            BufferedReader br = new BufferedReader(new InputStreamReader(fstream));
-
-            String strLine;
-            String line = "";
-            StringTokenizer st = null;
-            int lineNumber = 0;
-            int tokenNumber = 0;
-            while ((line = br.readLine()) != null) {
-                String[] arr = line.split(",");
-                System.out.println(arr[0]+" " + arr[1] + "---");
-                lineNumber++;
-
-            }
-            while ((strLine = br.readLine()) != null) {
-                System.out.println(strLine);
-            }
-            fstream.close();
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-        return avg;
-    }
 
     @Override
-    public void start(Stage primaryStage) {
+    public void start(Stage primaryStage) throws IOException {
 
         DefaultStatisticalCategoryDataset dataset = new DefaultStatisticalCategoryDataset();
-        dataset.add(1, 0.1, "series", "A");
-        dataset.add(2, 0.4, "series", "B");
-        dataset.add(2, 0.2, "series", "C");
+        dataset.add(1, 0.1, "series", "FARM 1");
+        dataset.add(2, 0.4, "series", "FARM 2");
+        dataset.add(2, 0.2, "series", "FARM 3");
 
         // System.out.println(avg());
 
@@ -68,7 +42,7 @@ public class DisplayGraph extends Application {
         CategoryPlot plot = new CategoryPlot(dataset, domain, range, renderer);
 
         JFreeChart chart = new JFreeChart(
-                "ErrorBars", JFreeChart.DEFAULT_TITLE_FONT, plot, false);
+                "Avg Milk Production in X100 Gallons. ", JFreeChart.DEFAULT_TITLE_FONT, plot, false);
 
         renderer.setDefaultItemLabelGenerator(new StandardCategoryItemLabelGenerator("{2}",
                 NumberFormat.getNumberInstance()));
@@ -84,20 +58,19 @@ public class DisplayGraph extends Application {
             }
         });
 
-        f.pack();
-        f.setLocationRelativeTo(null);
-        f.setVisible(true);
+        //f.setContentPane();
 
 //        saving the image
-//        Container content = f.getContentPane();
-//        BufferedImage image = new BufferedImage(content.getWidth(), content.getHeight(), BufferedImage.TYPE_INT_RGB);
-//        Graphics2D g2d = image.createGraphics();
-//        content.printAll(g2d);
-//        g2d.dispose();
-//        String  fileName = "/Users/akshat./Desktop/image5.png";
-//        ImageIO.write ( image, "png", new File(fileName) );
+        Container content = f.getContentPane();
+        BufferedImage image = new BufferedImage(content.getWidth()+1, content.getHeight()+1, BufferedImage.TYPE_INT_RGB);
+        Graphics2D g2d = image.createGraphics();
+        content.printAll(g2d);
+        g2d.dispose();
+        String  fileName = "src/main/java/sample/sample2.png";
+        ImageIO.write ( image, "png", new File(fileName) );
 
-
+        f.pack();
+//        f.setVisible(false);
     }
 
     public void startMain() {
