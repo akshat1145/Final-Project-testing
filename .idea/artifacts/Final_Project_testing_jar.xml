@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Final-Project-testing:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Final_Project_testing_jar</output-path>
+    <root id="archive" name="Final-Project-testing.jar">
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/src/main/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="module-output" name="Final-Project-testing" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/jfree/jfreechart/1.5.0/jfreechart-1.5.0.jar" path-in-jar="/" />
+      <element id="library" level="project" name="javafx-sdk-11.0" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/jfree/jcommon/1.0.16/jcommon-1.0.16.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
